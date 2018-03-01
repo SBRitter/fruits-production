@@ -1,0 +1,147 @@
+html {
+  cursor: default;
+}
+
+body {
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+}
+
+#target {
+  position: absolute;
+  width: 300px;
+  height: 350px;
+}
+
+#target-content {
+  width: 300px;
+  height: 250px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+#competitor {
+  position: absolute;
+  width: 300px;
+  height: 350px;
+}
+
+#competitor-content {
+  width: 300px;
+  height: 250px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+#distractor1 {
+  position: absolute;
+  width: 300px;
+  height: 350px;
+}
+
+#distractor1-content {
+  width: 300px;
+  height: 250px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+#distractor2 {
+  position: absolute;
+  width: 300px;
+  height: 350px;
+}
+
+#distractor2-content {
+  width: 300px;
+  height: 250px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+#curtain {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #DDD;
+}
+
+.arrow {
+  background-image: url('img/arrow.png');
+  background-size: cover;
+  background-position: center;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.upper-left {
+  left: 20%;
+  top: 0%;
+}
+
+.upper-right {
+  right: 20%;
+  top: 0%;
+}
+
+.lower-right {
+  right: 20%;
+  bottom: 10%;
+}
+
+.lower-left {
+  left: 20%;
+  bottom: 10%;
+}
+
+#sentence {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  height: 100px;
+  text-align: center;
+  padding: 5px;
+  font-size: 28px;
+}
+
+.info {
+  position: absolute;
+  padding: 20px;
+  left: 25%;
+  right: 25%;
+  line-height: 25px;
+}
+
+.continue-btn {
+  font-size: 18px;
+}
+
+#start-point {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  color: #AAA;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 32px;
+}
+
+#warmup-img {
+  text-align: center;
+}
+
+.warmup-phrase {
+  font-size: 28px;
+}

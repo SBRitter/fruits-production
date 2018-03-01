@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+
+		<!-- fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Lato:400|Noto+Serif:700" rel="stylesheet" />
+
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="style.css" />
+
+		<!-- js dependencies -->
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="node_modules/mustache/mustache.min.js"></script>
+
+		<!-- js -->
+		<script src="js/main.js"></script>
+		<script src="js/views.js"></script>
+	</head>
+
+  <body>
+  		<noscript>This task requires JavaScript.</noscript>
+
+  		<main id="main">
+  			Loading...
+  		</main>
+
+  		<script id="intro-templ" type="x-tmpl-mustache">
+  			<div class="intro-templ info">
+  				<article>
+  					<h2>Herzlich Willkommen!</h2>
+  					<p>Schön, dass Sie da sind.</p>
+            <button type="submit" id="start-exp-btn" class="continue-btn">Weiter</button>
+  				</article>
+  			</div>
+  		</script>
+
+  		<script id="instructions-templ" type="x-tmpl-mustache">
+  			<div class="instructions-templ info">
+  				<h2>Einleitung</h2>
+					<p>Danke, dass Sie sich Zeit für unsere Studie nehmen.</p>
+
+					<p>Im Folgenden bitten wir Sie, ein kleines Spiel mit einem Partner zu spielen. Dafür sitzen Sie und Ihr Partner jeweils vor einem Bildschirm. Auf den Bildschirmen werden Sie beide vier Bilder sehen. Zwei der vier Bilder sollen von Ihrem Mitspieler hintereinander angeklickt werden. Dafür ist das Bild, das jeweils gerade angeklickt werden muss, in Ihrer Ansicht mit einem Pfeil markiert. Ihr Mitspieler sieht zwar auch alle Bilder, er sieht aber nicht den Pfeil – er weiß also nicht, welches Bild angeklickt werden soll. Ihre Aufgabe ist es, Ihrem Mitspieler mitzuteilen, welches Bild er mit der Maus auswählen soll.</p>
+
+					<p>Eine weitere Schwierigkeit gibt es, Sie dürfen dafür nur diese vorgegebenen Satzstrukturen verwenden:</p>
+
+					<p>Beim ersten Bild: »Du sollst auf die _________ klicken.«</p>
+					<p>Beim zweiten Bild: »Und jetzt sollst du auf die _________ klicken.«</p>
+
+					<p>Wobei in der Lücke jeweils der Gegenstand auf dem Bild und seine Farbe stehen. Der Satz wird zur Vereinfachung für Sie zusätzlich unten auf dem Bildschirm eingeblendet. Also, wenn Sie zum Beispiel diese vier Bilder sehen:</p>
+
+					<img src="img/instr1.png" width="100%" style="border: 1px solid;"/>
+
+					<p>Dann sagen Sie: »Du sollst auf die blaue Tomate klicken.«</p>
+
+					<p>Im Anschluss an Ihre Instruktion wird Ihr Partner das Bild auswählen, das Sie benannt haben. Darauf erscheint ein Pfeil unter dem nächsten Bild:</p>
+
+					<img src="img/instr2.png" width="100%" style="border: 1px solid;"/>
+
+					<p>Sie sollen daraufhin sagen: »Und jetzt sollst du auf die blaue Birne klicken.«</p>
+
+					<p>Im Anschluss an Ihre Instruktion wird Ihr Partner wiederum das Bild auswählen, das Sie benannt haben, und neue Bilder erscheinen. Versuchen Sie, ganz natürlich mit Ihrem Partner zu kommunizieren. Er selbst soll nichts sagen, sondern sich nur auf die Auswahl der entsprechenden Bilder konzentrieren. Bitte kommunizieren Sie so, dass es Ihrem Partner möglichst leicht fällt, das richtige Bild schnell zu finden.</p>
+
+					<p>Im nächsten Abschnitt trainieren wir den Ablauf ein wenig.</p>
+
+  				<button type="submit" id="continue-btn" class="continue-btn">Weiter</button>
+  			</div>
+  		</script>
+
+			<script id="warmup-templ" type="x-tmpl-mustache">
+  			<div class="warmup-templ">
+  				<div id="warmup-img" class="info"></div>
+					<div id="warmup-info" class="info">
+					  <h2>Vorbereitung</h2>
+					  <p>Zunächst einmal müssen wir das Mikrofon aussteuern. Wir bitten Sie dazu, die Farben und Namen der Gegenstände, die sie gleich sehen, laut vorzulesen. Betätigen Sie jeweils die Leertaste, um zum nächsten Gegenstand zu gelangen.</p>
+					  <p>Mit Leertaste geht es los.</p>
+					</div>
+  			</div>
+  		</script>
+
+  		<script id="trial-templ" type="x-tmpl-mustache">
+  			<div class="trial-templ">
+  				<div id="target">
+						<div id="target-content"></div>
+            <div id="arrow-target"></div>
+          </div>
+          <div id="competitor">
+            <div id="competitor-content"></div>
+            <div id="arrow-competitor"></div>
+          </div>
+          <div id="distractor1">
+            <div id="distractor1-content"></div>
+          </div>
+          <div id="distractor2">
+            <div id="distractor2-content"></div>
+          </div>
+					<div id="sentence"></div>
+          <div id="curtain"></div>
+					<div id="start-point">+</div>
+  			</div>
+  		</script>
+
+  		<script id="begin-exp-templ" type="x-tmpl-mustache">
+  			<div class="begin-templ info">
+  				<h2>Alles klar?</h2>
+					<p>Dann geht es jetzt mit dem eigentlichen Spiel los.</p>
+  				<button type="submit" id="continue-btn" class="continue-btn">Experiment starten</button>
+  			</div>
+  		</script>
+
+      <script id="end-templ" type="x-tmpl-mustache">
+  			<div class="end-templ info">
+  				<h2>Herzlichen Dank für Ihre Teilnahme!</h2>
+  			</div>
+  		</script>
+
+  </body>
+</html>
