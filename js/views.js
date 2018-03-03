@@ -91,6 +91,7 @@ var initTrialView = function(trialList, viewName) {
     if (trialList[current] != null) {
       if (competitorSequence) {
         $("#curtain").fadeIn('fast');
+				$("#start-point").fadeIn('fast');
         targetSequence = true;
         setTimeout(function() {
           populateTrialLayout(trialList, current);
@@ -102,6 +103,7 @@ var initTrialView = function(trialList, viewName) {
           competitorSentence(competitorAdjective + " " + competitorNoun);
           competitorSequence = false;
           $("#curtain").fadeOut('fast');
+					$("#start-point").fadeOut('fast');
         }, 2000);
       } else if (targetSequence) {
 				var targetAdjective = trialList[current][2];

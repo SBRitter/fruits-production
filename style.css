@@ -97,20 +97,19 @@ body {
 
 .lower-right {
   right: 20%;
-  bottom: 10%;
+  bottom: 0%;
 }
 
 .lower-left {
   left: 20%;
-  bottom: 10%;
+  bottom: 0%;
 }
 
 #sentence {
   position: absolute;
   left: 10%;
   right: 10%;
-  bottom: 0;
-  height: 100px;
+  top: 40%;
   text-align: center;
   padding: 5px;
   font-size: 28px;
