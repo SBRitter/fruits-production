@@ -14,7 +14,7 @@ class extremes:
     return my_fruits
 
   def get_list(self):
-    with open("extreme_list.csv", "rU") as content_file:
+    with open("../data/extreme_list.csv", "rU") as content_file:
       content = content_file.read()
       return content
 
@@ -27,7 +27,7 @@ class trials:
     return my_fruits
 
   def get_list(self):
-    with open("trial_list.csv", "rU") as content_file:
+    with open("../data/trial_list.csv", "rU") as content_file:
       content = content_file.read()
       return content
 

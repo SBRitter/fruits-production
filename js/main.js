@@ -23,7 +23,7 @@ $(document).ready(function(){
     success: function(response) {
       var lines = response.split("\n");
       for (line_number in lines) {
-        if (lines[line_number] != "") {
+        if (lines[line_number] != "" & line_number > 0) {
           trialList.push(lines[line_number].split(";"));
         }
       }
