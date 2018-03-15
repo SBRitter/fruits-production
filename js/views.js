@@ -65,7 +65,7 @@ var initWarmUpView = function(itemsList) {
 		if (e.keyCode == 32) {
 			if (itemsList[current] != null) {
 				$('#warmup-img').html("<img src='img/fruits/" + itemsList[current][0].toLowerCase() + "_" +  itemsList[current][1] + ".png' height=400px>" +
-					"<p class='warmup-phrase'><b>Die " +  inflect(itemsList[current][1], itemsList[current][0]) + " " + itemsList[current][0] + "</b></p>" +
+					"<p class='warmup-phrase'><b>die " +  inflect(itemsList[current][1], itemsList[current][0]) + " " + umlaut(itemsList[current][0]) + "</b></p>" +
 					"<p>Weiter mit Leertaste.</p>");
 				$('#warmup-info').html("")
 				current = current + 1;
@@ -104,7 +104,7 @@ var initTrialView = function(trialList, viewName) {
 					competitorSequence = false;
 					$("#curtain").fadeOut('fast');
 					$("#start-point").fadeOut('fast');
-				}, 2000);
+				}, 3000);
 			} else if (targetSequence) {
 				var targetAdjective = trialList[current][2];
 				var targetNoun = trialList[current][1];
@@ -124,10 +124,10 @@ var initTrialView = function(trialList, viewName) {
 
 var inflect = function(adjective, noun) {
 	adjective = umlaut(adjective);
-	if (adjective != "orange") {
+	if (adjective != "orange" && adjective != "lila") {
 		adjective = adjective + "e";
 	}
-	if (noun.charAt(noun.length-1) == "n") {
+	if (noun.charAt(noun.length-1) == "n" && adjective != "lila") {
 		adjective = adjective + "n";
 	}
 	return adjective;
@@ -148,8 +148,12 @@ var competitorSentence = function(competitor) {
 
 var targetSentence = function(target) {
 	$("#arrow-competitor").removeClass("arrow");
-	$("#arrow-target").addClass("arrow");
-	$("#sentence").html("<br>Und jetzt sollst du auf die <b>" + target + "</b> klicken.")
+	$("#sentence").hide();
+	setTimeout(function() {
+		$("#arrow-target").addClass("arrow");
+	  $("#sentence").html("<br>Und jetzt sollst du auf die <b>" + target + "</b> klicken.");
+		$("#sentence").show();
+	}, 250);
 }
 
 var initEndView = function() {

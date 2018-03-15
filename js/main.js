@@ -36,18 +36,6 @@ var exp = {};
 var trialListTraining = trialList;
 var trialListExp = trialList;
 
-/*trialListTraining = [
-	["AF", "Paprika", "blau", "Paprika", "gruen", "Tomate", "gelb", "Banane", "rot"],
-	["NF", "Birne", "blau", "Tomate", "blau", "Moehre", "orange", "Sonnenbrille", "gruen"],
-	["ANF", "Sonnenbrille", "gelb", "Zucchini", "rot", "Waescheklammer", "braun", "Aprikose", "blau"]
-];*/
-
-/*trialListExp = [
-	["NF", "Birne", "blau", "Tomate", "blau", "Moehre", "orange", "Sonnenbrille", "gruen"],
-	["AF", "Paprika", "blau", "Paprika", "gruen", "Tomate", "gelb", "Banane", "rot"],
-	["ANF", "Sonnenbrille", "gelb", "Zucchini", "rot", "Waescheklammer", "braun", "Aprikose", "blau"]
-];*/
-
 /* view handler */
 exp.getNextView = function() {
 	if (this.view.name === 'intro') {
