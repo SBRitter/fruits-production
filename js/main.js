@@ -1,4 +1,5 @@
 var extremes = [];
+var trainingList = [];
 var trialList = [];
 
 $(document).ready(function(){
@@ -12,6 +13,19 @@ $(document).ready(function(){
 			for (line_number in lines) {
 				if (lines[line_number] != "") {
 					extremes.push(lines[line_number].split(";"));
+				}
+			}
+		}
+	});
+
+	$.ajax({
+		url: "http://0.0.0.0:8080/training",
+		contentType: "text/plain",
+		success: function(response) {
+			var lines = response.split("\n");
+			for (line_number in lines) {
+				if (lines[line_number] != "" & line_number > 0) {
+					trainingList.push(lines[line_number].split(";"));
 				}
 			}
 		}
@@ -33,9 +47,6 @@ $(document).ready(function(){
 
 var exp = {};
 
-var trialListTraining = trialList;
-var trialListExp = trialList;
-
 /* view handler */
 exp.getNextView = function() {
 	if (this.view.name === 'intro') {
@@ -43,11 +54,11 @@ exp.getNextView = function() {
 	} else if (this.view.name === 'warm-up') {
 		this.view = initInstructionsView();
 	} else if (this.view.name === 'instructions') {
-		this.view = initTrialView(trialListTraining, 'practice');
+		this.view = initTrialView(trainingList, 'practice');
 	} else if ((this.view.name === 'practice')){
-		this.view = initBeginExpView(trialListExp);
+		this.view = initBeginExpView();
 	} else if (this.view.name === 'beginExp') {
-		this.view = initTrialView(trialListExp, 'exp');
+		this.view = initTrialView(trialList, 'exp');
 	} else {
 		this.view = initEndView();
 	}

@@ -1,0 +1,6 @@
+condition;target_name;target_colour;competitor_name;competitor_colour;distractor1_name;distractor1_colour;distractor2_name;distractor2_colour
+NF;Avokado;gruen;Sonnenbrille;gruen;Bueroklammer;orange;Birne;rot
+ANF;Zucchini;gelb;Socken;orange;Sonnenbrille;braun;Aubergine;gruen
+AF;Waescheklammer;braun;Waescheklammer;gelb;Birne;orange;Socken;gruen
+ANF;Sonnenbrille;orange;Zucchini;braun;Waescheklammer;gelb;Avokado;rot
+NF;Birne;rot;Aubergine;rot;Socken;gelb;Bueroklammer;braun
