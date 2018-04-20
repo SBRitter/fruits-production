@@ -129,10 +129,13 @@ var inflect = function(adjective, noun) {
 	adjective = umlaut(adjective);
 	if (adjective != "orange" && adjective != "lila") {
 		adjective = adjective + "e";
+	} else if (adjective == "orange") {
+		adjective = adjective + "ne";
 	}
 	if (noun.charAt(noun.length-1) == "n" && adjective != "lila") {
 		adjective = adjective + "n";
 	}
+
 	return adjective;
 }
 
