@@ -142,7 +142,6 @@ var initTrialView = function(trialList, viewName) {
 			}
 		}
 	});
-
 	return view;
 }
 
