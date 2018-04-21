@@ -35,10 +35,10 @@ var populateTrialLayout = function(trialList, trialNumber) {
 
 var adjustLayoutPositions = function() {
 	positions = getRandomPositionList();
-	$("#target").removeClass().addClass(positions[0])
-	$("#competitor").removeClass().addClass(positions[1])
-	$("#distractor1").removeClass().addClass(positions[2])
-	$("#distractor2").removeClass().addClass(positions[3])
+	$("#target").removeClass().addClass(positions[0]).addClass("drop-area");
+	$("#competitor").removeClass().addClass(positions[1]).addClass("drop-area");
+	$("#distractor1").removeClass().addClass(positions[2]).addClass("drop-area");
+	$("#distractor2").removeClass().addClass(positions[3]).addClass("drop-area");
 }
 
 var initBeginExpView = function() {
@@ -65,7 +65,7 @@ var initWarmUpView = function(itemsList) {
 		if (e.keyCode == 32) {
 			if (itemsList[current] != null) {
 				$('#warmup-img').html("<img src='img/fruits/" + itemsList[current][0].toLowerCase() + "_" +  itemsList[current][1] + ".png' height=400px>" +
-					"<p class='warmup-phrase'><b>die " +  inflect(itemsList[current][1], itemsList[current][0]) + " " + umlaut(itemsList[current][0]) + "</b></p>");
+					"<p class='warmup-phrase'><b>die " +  inflectNominative(itemsList[current][1], itemsList[current][0]) + " " + umlaut(itemsList[current][0]) + "</b></p>");
 				$('#warmup-info').html("")
 				current = current + 1;
 			} else { 
@@ -86,46 +86,77 @@ var initTrialView = function(trialList, viewName) {
 	var current = 0;
 	var competitorSequence = true;
 	var targetSequence = false;
-	$(document).click(function(){
-		if (trialList[current] != null) {
-			if (competitorSequence) {
-				$("#curtain").fadeIn('fast');
-				$("#sentence").fadeOut('fast');
-				$("#start-point").fadeIn('fast');
-				targetSequence = true;
-				setTimeout(function() {
-					populateTrialLayout(trialList, current);
-					adjustLayoutPositions();
-					var competitorAdjective = trialList[current][4];
-					var competitorNoun = trialList[current][3];
-					competitorAdjective = inflect(competitorAdjective, competitorNoun);
-					competitorNoun = umlaut(competitorNoun);
-					competitorSentence(competitorAdjective + " " + competitorNoun);
-					competitorSequence = false;
-					$("#curtain").fadeOut('fast');
+
+	// init first trial
+	populateTrialLayout(trialList, current);
+	adjustLayoutPositions();
+	var competitorAdjective = trialList[current][4];
+	var competitorNoun = trialList[current][3];
+	competitorAdjective = inflectDative(competitorAdjective, competitorNoun);
+	competitorNoun = umlaut(competitorNoun);
+	competitorSentence(competitorAdjective + " " + competitorNoun);
+	targetSequence = true;
+	competitorSequence = false;
+	$("#curtain").fadeOut('fast');
+	setTimeout(function() {
+		$("#sentence").fadeIn('fast');
+	}, 1500);
+
+  // now, views are changed after dropping
+	$("#cube").draggable();
+	$(".drop-area").droppable({
+		drop: function( event, ui ) {
+			if (trialList[current] != null) {
+				if (competitorSequence && $(this).is("#target")) {
+					$("#curtain").fadeIn('fast');
+					$("#sentence").fadeOut('fast');
+					targetSequence = true;
 					setTimeout(function() {
-						$("#sentence").fadeIn('fast');
-					}, 1500);
-					$("#start-point").fadeOut('fast');
-				}, 3000);
-			} else if (targetSequence) {
-				var targetAdjective = trialList[current][2];
-				var targetNoun = trialList[current][1];
-				targetAdjective = inflect(targetAdjective, targetNoun);
-				targetNoun = umlaut(targetNoun);
-				targetSentence(targetAdjective + " " + targetNoun);
-				targetSequence = false;
-				competitorSequence = true;
-				current = current + 1;
+						$("#cube").css("top", "30%");
+						$("#cube").css("left", "45%");
+						populateTrialLayout(trialList, current);
+						adjustLayoutPositions();
+						var competitorAdjective = trialList[current][4];
+						var competitorNoun = trialList[current][3];
+						competitorAdjective = inflectDative(competitorAdjective, competitorNoun);
+						competitorNoun = umlaut(competitorNoun);
+						competitorSentence(competitorAdjective + " " + competitorNoun);
+						competitorSequence = false;
+						$("#curtain").fadeOut('fast');
+						setTimeout(function() {
+							$("#sentence").fadeIn('fast');
+						}, 1500);
+					}, 3000);
+				} else if (targetSequence && $(this).is("#competitor")) {
+					var targetAdjective = trialList[current][2];
+					var targetNoun = trialList[current][1];
+					targetAdjective = inflectDative(targetAdjective, targetNoun);
+					targetNoun = umlaut(targetNoun);
+					targetSentence(targetAdjective + " " + targetNoun);
+					targetSequence = false;
+					competitorSequence = true;
+					current = current + 1;
+				}
+			} else {
+				exp.getNextView();
 			}
-		} else {
-			exp.getNextView();
 		}
 	});
+
 	return view;
 }
 
-var inflect = function(adjective, noun) {
+var inflectDative = function(adjective, noun) {
+	adjective = umlaut(adjective);
+	if (adjective != "orange" && adjective != "lila") {
+		adjective = adjective + "en";
+	} else if (adjective == "orange") {
+		adjective = adjective + "nen";
+	}
+	return adjective;
+}
+
+var inflectNominative = function(adjective, noun) {
 	adjective = umlaut(adjective);
 	if (adjective != "orange" && adjective != "lila") {
 		adjective = adjective + "e";
@@ -135,7 +166,6 @@ var inflect = function(adjective, noun) {
 	if (noun.charAt(noun.length-1) == "n" && adjective != "lila") {
 		adjective = adjective + "n";
 	}
-
 	return adjective;
 }
 
@@ -150,7 +180,7 @@ var competitorSentence = function(competitor) {
 	$("#arrow-target").removeClass("arrow");
 	setTimeout(function() {
 		$("#arrow-competitor").addClass("arrow");
-		$("#sentence").html("<br>Du sollst auf die <b>" + competitor + "</b> klicken.")
+		$("#sentence").html("<br>Du sollst den Würfel auf <b>" + findDeterminer(competitor.split(" ")[1]) + " " + competitor + "</b> ablegen.")
 	}, 1500);
 }
 
@@ -159,9 +189,19 @@ var targetSentence = function(target) {
 	$("#sentence").hide();
 	setTimeout(function() {
 		$("#arrow-target").addClass("arrow");
-	  $("#sentence").html("<br>Und jetzt sollst du auf die <b>" + target + "</b> klicken.");
+	  $("#sentence").html("<br>Und jetzt sollst du den Würfel auf <b>" + findDeterminer(target.split(" ")[1]) + " " + target + "</b> ablegen.")
 		$("#sentence").show();
 	}, 250);
+}
+
+var findDeterminer = function(noun) {
+	determiner = "der";
+
+	if (noun == "Bohnen" || noun == "Trauben" || noun == "Socken" || noun == "Kartoffeln" || noun == "Erbsen") {
+		determiner = "den";
+
+	}
+	return determiner;
 }
 
 var initEndView = function() {
@@ -187,4 +227,4 @@ var getRandomPositionList = function() {
 		counter = counter - 1;
 	}
 	return positionList;
-}
+};

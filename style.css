@@ -127,20 +127,20 @@ body {
 	font-size: 18px;
 }
 
-#start-point {
-	position: absolute;
-	top: 40%;
-	left: 50%;
-	color: #AAA;
-	text-align: center;
-	margin: 0 auto;
-	font-size: 32px;
-}
-
 #warmup-img {
 	text-align: center;
 }
 
 .warmup-phrase {
 	font-size: 28px;
+}
+
+#cube {
+  width: 100px;
+	height: 100px;
+	position: absolute;
+	background-image: url('img/cube.png');
+	background-size: contain;
+	top: 30%;
+	left: 45%;
 }
