@@ -27,12 +27,17 @@
 			</main>
 
 			<script id="intro-templ" type="x-tmpl-mustache">
-				<div class="intro-templ info">
-					<article>
-						<h2>Herzlich Willkommen!</h2>
-						<p>Schön, dass Sie da sind.</p>
+				<div class="intro-templ">
+				  <div class="info"></div>
+					<div class="info">
+						<article>
+							<h2>Herzlich Willkommen!</h2>
+							<p>Schön, dass Sie da sind.</p>
+						</article>
+					</div>
+					<div class="button">
 						<button type="submit" id="start-exp-btn" class="continue-btn">Weiter</button>
-					</article>
+					</div>
 				</div>
 			</script>
 
@@ -43,6 +48,10 @@
 						<h2>Vorbereitung</h2>
 						<p>Zunächst einmal müssen wir das Mikrofon aussteuern. Wir bitten Sie dazu, die Farben und Namen der Gegenstände, die Sie gleich sehen, laut vorzulesen.</p>
 					</div>
+					<div class="button">
+						<button type="submit" class="continue-btn warm-up-btn">Weiter</button>
+					</div>
+
 				</div>
 			</script>
 
@@ -51,26 +60,26 @@
 					<h2>Einleitung</h2>
 					<p>Danke, dass Sie sich Zeit für unsere Studie nehmen.</p>
 
-					<p>Im Folgenden bitten wir Sie, ein kleines Spiel mit einem Partner zu spielen. Dafür sitzen Sie und Ihr Partner jeweils vor einem Bildschirm. Auf den Bildschirmen werden Sie beide vier Bilder sehen. Zwei der vier Bilder sollen von Ihrem Mitspieler hintereinander angeklickt werden. Dafür ist das Bild, das jeweils gerade angeklickt werden muss, in Ihrer Ansicht mit einem Pfeil markiert. Ihr Mitspieler sieht zwar auch alle Bilder, er sieht aber nicht den Pfeil – er weiß also nicht, welches Bild angeklickt werden soll. Ihre Aufgabe ist es, Ihrem Mitspieler mitzuteilen, welches Bild er mit der Maus auswählen soll.</p>
+					<p>Im Folgenden bitten wir Sie, ein kleines Spiel mit einem Partner zu spielen. Dafür sitzen Sie und Ihr Partner jeweils vor einem Bildschirm. Auf den Bildschirmen werden Sie beide vier Bilder sehen. In der Mitte zwischen den Bildern ist ein Würfel zu sehen, der von Ihrem Partner mit der Maus bewegt werden kann. Ihr Mitspieler soll den Würfel hintereinander auf zwei der Bilder ziehen. Dafür ist das Bild, auf das jeweils gerade der Würfel gezogen werden muss, in Ihrer Ansicht mit einem Pfeil markiert. Ihr Mitspieler sieht zwar auch alle Bilder, er sieht aber nicht den Pfeil – er weiß also nicht, auf welchem Bild er den Würfel ablegen soll. Ihre Aufgabe ist es, Ihrem Mitspieler mitzuteilen, auf welchem Bild er den Würfel ablegen soll.</p>
 
 					<p>Eine weitere Schwierigkeit gibt es, Sie dürfen dafür nur diese vorgegebenen Satzstrukturen verwenden:</p>
 
-					<p>Beim ersten Bild: »Du sollst auf die _________ klicken.«</p>
-					<p>Beim zweiten Bild: »Und jetzt sollst du auf die _________ klicken.«</p>
+					<p>Beim ersten Bild: »Du sollst den Würfel auf der _________ ablegen.«</p>
+					<p>Beim zweiten Bild: »Und jetzt sollst du den Würfel auf der _________ ablegen.«</p>
 
 					<p>Wobei in der Lücke jeweils der Gegenstand auf dem Bild und seine Farbe stehen. Der Satz wird zur Vereinfachung für Sie zusätzlich in der Mitte des Bildschirms eingeblendet. Also, wenn Sie zum Beispiel diese vier Bilder sehen:</p>
 
 					<img src="img/instr1.png" width="100%" style="border: 1px solid;"/>
 
-					<p>Dann sagen Sie: »Du sollst auf die blaue Tomate klicken.«</p>
+					<p>Dann sagen Sie: »Du sollst den Würfel auf der grünen Sonnenbrille ablegen.«</p>
 
-					<p>Im Anschluss an Ihre Instruktion wird Ihr Partner das Bild auswählen, das Sie benannt haben. Darauf erscheint ein Pfeil unter dem nächsten Bild:</p>
+					<p>Im Anschluss an Ihre Instruktion wird Ihr Partner den Würfel auf dem Bild ablegen, das Sie benannt haben. Darauf erscheint ein Pfeil unter dem nächsten Bild:</p>
 
 					<img src="img/instr2.png" width="100%" style="border: 1px solid;"/>
 
-					<p>Sie sollen daraufhin sagen: »Und jetzt sollst du auf die blaue Birne klicken.«</p>
+					<p>Sie sagen daraufhin: »Und jetzt sollst du den Würfel auf der grünen Avokado ablegen.«</p>
 
-					<p>Im Anschluss an Ihre Instruktion wird Ihr Partner wiederum das Bild auswählen, das Sie benannt haben, und neue Bilder erscheinen. Versuchen Sie, ganz natürlich mit Ihrem Partner zu kommunizieren. Er selbst soll nichts sagen, sondern sich nur auf die Auswahl der entsprechenden Bilder konzentrieren. Bitte kommunizieren Sie so, dass es Ihrem Partner möglichst leicht fällt, das richtige Bild schnell zu finden.</p>
+					<p>Im Anschluss an Ihre Instruktion wird Ihr Partner wiederum den Würfel auf das Bild ziehen, das Sie benannt haben, und neue Bilder erscheinen. Versuchen Sie, ganz natürlich mit Ihrem Partner zu kommunizieren. Er selbst soll nichts sagen, sondern sich nur auf die Auswahl der entsprechenden Bilder konzentrieren. Bitte kommunizieren Sie so, dass es Ihrem Partner möglichst leicht fällt, das richtige Bild schnell zu finden.</p>
 
 					<p>Im nächsten Abschnitt trainieren wir den Ablauf ein wenig.</p>
 
@@ -80,7 +89,6 @@
 
 			<script id="trial-templ" type="x-tmpl-mustache">
 				<div class="trial-templ">
-
 					<div id="target" class="drop-area">
 						<div id="target-content"></div>
 						<div id="arrow-target"></div>
@@ -98,6 +106,7 @@
 					<div id="sentence"></div>
 					<div id="cube"></div>
 					<div id="curtain"></div>
+					<div id="start-point">+</div>
 				</div>
 			</script>
 

@@ -61,17 +61,16 @@ var initWarmUpView = function(itemsList) {
 	var rendered = Mustache.render(view.template);
 	$('#main').html(rendered);
 	var current = 0;
-	$(document).keydown(function(e){
-		if (e.keyCode == 32) {
-			if (itemsList[current] != null) {
-				$('#warmup-img').html("<img src='img/fruits/" + itemsList[current][0].toLowerCase() + "_" +  itemsList[current][1] + ".png' height=400px>" +
-					"<p class='warmup-phrase'><b>die " +  inflectNominative(itemsList[current][1], itemsList[current][0]) + " " + umlaut(itemsList[current][0]) + "</b></p>");
-				$('#warmup-info').html("")
-				current = current + 1;
-			} else { 
-				exp.getNextView();
-				$(document).unbind();
-			}
+	$(".warm-up-btn").on('click', function(){
+		$(".button").css("text-align", "center");
+		if (itemsList[current] != null) {
+			$('#warmup-img').html("<img src='img/fruits/" + itemsList[current][0].toLowerCase() + "_" +  itemsList[current][1] + ".png' height=400px>" +
+				"<p class='warmup-phrase'><b>die " +  inflectNominative(itemsList[current][1], itemsList[current][0]) + " " + umlaut(itemsList[current][0]) + "</b></p>");
+			$('#warmup-info').html('');
+			current = current + 1;
+		} else { 
+			exp.getNextView();
+			$(document).unbind();
 		}
 	});
 	return view;
@@ -88,6 +87,8 @@ var initTrialView = function(trialList, viewName) {
 	var targetSequence = false;
 
 	// init first trial
+	$("#curtain").show();
+	$("#start-point").show();
 	populateTrialLayout(trialList, current);
 	adjustLayoutPositions();
 	var competitorAdjective = trialList[current][4];
@@ -97,10 +98,13 @@ var initTrialView = function(trialList, viewName) {
 	competitorSentence(competitorAdjective + " " + competitorNoun);
 	targetSequence = true;
 	competitorSequence = false;
-	$("#curtain").fadeOut('fast');
 	setTimeout(function() {
-		$("#sentence").fadeIn('fast');
-	}, 1500);
+		$("#curtain").fadeOut('fast');
+		$("#start-point").fadeOut('fast');
+		setTimeout(function() {
+			$("#sentence").fadeIn('fast');
+		}, 1500);
+	}, 3000)
 
   // now, views are changed after dropping
 	$("#cube").draggable();
@@ -109,11 +113,12 @@ var initTrialView = function(trialList, viewName) {
 			if (trialList[current] != null) {
 				if (competitorSequence && $(this).is("#target")) {
 					$("#curtain").fadeIn('fast');
+					$("#start-point").fadeIn('fast');
 					$("#sentence").fadeOut('fast');
 					targetSequence = true;
 					setTimeout(function() {
-						$("#cube").css("top", "30%");
-						$("#cube").css("left", "45%");
+						$("#cube").css("top", "35%");
+						$("#cube").css("left", "47%");
 						populateTrialLayout(trialList, current);
 						adjustLayoutPositions();
 						var competitorAdjective = trialList[current][4];
@@ -123,6 +128,7 @@ var initTrialView = function(trialList, viewName) {
 						competitorSentence(competitorAdjective + " " + competitorNoun);
 						competitorSequence = false;
 						$("#curtain").fadeOut('fast');
+						$("#start-point").fadeOut('fast');
 						setTimeout(function() {
 							$("#sentence").fadeIn('fast');
 						}, 1500);
