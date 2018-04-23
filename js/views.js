@@ -87,6 +87,7 @@ var initTrialView = function(trialList, viewName) {
 	var targetSequence = false;
 
 	// init first trial
+	$("#sentence").hide();
 	$("#curtain").show();
 	$("#start-point").show();
 	populateTrialLayout(trialList, current);
@@ -103,7 +104,7 @@ var initTrialView = function(trialList, viewName) {
 		$("#start-point").fadeOut('fast');
 		setTimeout(function() {
 			$("#sentence").fadeIn('fast');
-		}, 1500);
+		}, 2000);
 	}, 3000)
 
   // now, views are changed after dropping
@@ -117,7 +118,7 @@ var initTrialView = function(trialList, viewName) {
 					$("#sentence").fadeOut('fast');
 					targetSequence = true;
 					setTimeout(function() {
-						$("#cube").css("top", "35%");
+						$("#cube").css("top", "30%");
 						$("#cube").css("left", "47%");
 						populateTrialLayout(trialList, current);
 						adjustLayoutPositions();
@@ -131,7 +132,7 @@ var initTrialView = function(trialList, viewName) {
 						$("#start-point").fadeOut('fast');
 						setTimeout(function() {
 							$("#sentence").fadeIn('fast');
-						}, 1500);
+						}, 2000);
 					}, 3000);
 				} else if (targetSequence && $(this).is("#competitor")) {
 					var targetAdjective = trialList[current][2];
@@ -195,7 +196,9 @@ var targetSentence = function(target) {
 	setTimeout(function() {
 		$("#arrow-target").addClass("arrow");
 	  $("#sentence").html("<br>Und jetzt sollst du den Würfel auf <b>" + findDeterminer(target.split(" ")[1]) + " " + target + "</b> ablegen.")
-		$("#sentence").show();
+		setTimeout(function() {
+		  $("#sentence").fadeIn('fast');
+		}, 1000);
 	}, 250);
 }
 
