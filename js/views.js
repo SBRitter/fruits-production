@@ -96,15 +96,12 @@ var initTrialView = function(trialList, viewName) {
 	var competitorNoun = trialList[current][3];
 	competitorAdjective = inflectDative(competitorAdjective, competitorNoun);
 	competitorNoun = umlaut(competitorNoun);
-	competitorSentence(competitorAdjective + " " + competitorNoun);
 	targetSequence = true;
 	competitorSequence = false;
 	setTimeout(function() {
 		$("#curtain").fadeOut('fast');
 		$("#start-point").fadeOut('fast');
-		setTimeout(function() {
-			$("#sentence").fadeIn('fast');
-		}, 2000);
+		competitorSentence(competitorAdjective + " " + competitorNoun);
 	}, 3000)
 
   // now, views are changed after dropping
@@ -130,9 +127,6 @@ var initTrialView = function(trialList, viewName) {
 						competitorSequence = false;
 						$("#curtain").fadeOut('fast');
 						$("#start-point").fadeOut('fast');
-						setTimeout(function() {
-							$("#sentence").fadeIn('fast');
-						}, 2000);
 					}, 3000);
 				} else if (targetSequence && $(this).is("#competitor")) {
 					var targetAdjective = trialList[current][2];
@@ -186,7 +180,10 @@ var competitorSentence = function(competitor) {
 	$("#arrow-target").removeClass("arrow");
 	setTimeout(function() {
 		$("#arrow-competitor").addClass("arrow");
+	}, 1000);
+	setTimeout(function() {
 		$("#sentence").html("<br>Du sollst den Würfel auf <b>" + findDeterminer(competitor.split(" ")[1]) + " " + competitor + "</b> ablegen.")
+		$("#sentence").fadeIn(250);
 	}, 1500);
 }
 
@@ -195,11 +192,11 @@ var targetSentence = function(target) {
 	$("#sentence").hide();
 	setTimeout(function() {
 		$("#arrow-target").addClass("arrow");
-	  $("#sentence").html("<br>Und jetzt sollst du den Würfel auf <b>" + findDeterminer(target.split(" ")[1]) + " " + target + "</b> ablegen.")
-		setTimeout(function() {
-		  $("#sentence").fadeIn('fast');
-		}, 1000);
-	}, 250);
+	}, 1000);
+	setTimeout(function() {
+		$("#sentence").html("<br>Und jetzt sollst du den Würfel auf <b>" + findDeterminer(target.split(" ")[1]) + " " + target + "</b> ablegen.")
+		$("#sentence").fadeIn(250);
+	}, 1500);
 }
 
 var findDeterminer = function(noun) {
